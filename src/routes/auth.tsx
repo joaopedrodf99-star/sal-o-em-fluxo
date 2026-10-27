@@ -75,6 +75,7 @@ function AuthPage() {
       </div>
       <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-sm">
+          <div className="mb-6 flex items-center gap-2 text-foreground lg:hidden"><span className="h-3 w-3 rounded-full brand-dot" /> Office Cabelos App</div>
           <h2 className="mb-6 text-4xl">Bem-vindo</h2>
           <Tabs defaultValue="in">
             <TabsList className="grid w-full grid-cols-2">
