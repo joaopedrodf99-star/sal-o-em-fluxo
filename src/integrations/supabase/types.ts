@@ -382,6 +382,60 @@ export type Database = {
           },
         ]
       }
+      closing_entries: {
+        Row: {
+          amount: number
+          closing_id: string
+          company_id: string
+          created_at: string
+          created_by: string | null
+          id: string
+          kind: string
+          method: string | null
+          occurred_at: string
+          reason: string | null
+        }
+        Insert: {
+          amount: number
+          closing_id: string
+          company_id: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind: string
+          method?: string | null
+          occurred_at?: string
+          reason?: string | null
+        }
+        Update: {
+          amount?: number
+          closing_id?: string
+          company_id?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          kind?: string
+          method?: string | null
+          occurred_at?: string
+          reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "closing_entries_closing_id_fkey"
+            columns: ["closing_id"]
+            isOneToOne: false
+            referencedRelation: "weekly_closings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "closing_entries_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       commissions: {
         Row: {
           amount: number
@@ -464,6 +518,7 @@ export type Database = {
           accent_color: string | null
           address: string | null
           closing_time: string
+          closing_weekday: number
           created_at: string
           id: string
           name: string
@@ -476,6 +531,7 @@ export type Database = {
           accent_color?: string | null
           address?: string | null
           closing_time?: string
+          closing_weekday?: number
           created_at?: string
           id?: string
           name: string
@@ -488,6 +544,7 @@ export type Database = {
           accent_color?: string | null
           address?: string | null
           closing_time?: string
+          closing_weekday?: number
           created_at?: string
           id?: string
           name?: string
@@ -1316,6 +1373,7 @@ export type Database = {
           name: string
           online_booking: boolean
           price: number
+          prof_share_pct: number | null
         }
         Insert: {
           active?: boolean
@@ -1330,6 +1388,7 @@ export type Database = {
           name: string
           online_booking?: boolean
           price?: number
+          prof_share_pct?: number | null
         }
         Update: {
           active?: boolean
@@ -1344,6 +1403,7 @@ export type Database = {
           name?: string
           online_booking?: boolean
           price?: number
+          prof_share_pct?: number | null
         }
         Relationships: [
           {
@@ -1402,6 +1462,130 @@ export type Database = {
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tickets: {
+        Row: {
+          amount: number
+          client_id: string | null
+          client_name: string | null
+          closing_id: string | null
+          company_id: string
+          created_at: string
+          created_by: string | null
+          discount: number
+          est_amount: number
+          id: string
+          idempotency_key: string | null
+          method_kind: string
+          method_name: string | null
+          notes: string | null
+          payment_method_id: string | null
+          performed_at: string
+          prof_amount: number
+          prof_pct: number
+          professional_id: string
+          reversed_by: string | null
+          reversed_reason: string | null
+          service_id: string | null
+          service_name: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          client_id?: string | null
+          client_name?: string | null
+          closing_id?: string | null
+          company_id: string
+          created_at?: string
+          created_by?: string | null
+          discount?: number
+          est_amount?: number
+          id?: string
+          idempotency_key?: string | null
+          method_kind?: string
+          method_name?: string | null
+          notes?: string | null
+          payment_method_id?: string | null
+          performed_at?: string
+          prof_amount?: number
+          prof_pct?: number
+          professional_id: string
+          reversed_by?: string | null
+          reversed_reason?: string | null
+          service_id?: string | null
+          service_name: string
+          status?: string
+        }
+        Update: {
+          amount?: number
+          client_id?: string | null
+          client_name?: string | null
+          closing_id?: string | null
+          company_id?: string
+          created_at?: string
+          created_by?: string | null
+          discount?: number
+          est_amount?: number
+          id?: string
+          idempotency_key?: string | null
+          method_kind?: string
+          method_name?: string | null
+          notes?: string | null
+          payment_method_id?: string | null
+          performed_at?: string
+          prof_amount?: number
+          prof_pct?: number
+          professional_id?: string
+          reversed_by?: string | null
+          reversed_reason?: string | null
+          service_id?: string | null
+          service_name?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tickets_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_closing_id_fkey"
+            columns: ["closing_id"]
+            isOneToOne: false
+            referencedRelation: "weekly_closings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_payment_method_id_fkey"
+            columns: ["payment_method_id"]
+            isOneToOne: false
+            referencedRelation: "payment_methods"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
             referencedColumns: ["id"]
           },
         ]
@@ -1467,6 +1651,99 @@ export type Database = {
           },
         ]
       }
+      weekly_closings: {
+        Row: {
+          adjustments_total: number
+          advances_total: number
+          approved_at: string | null
+          approved_by: string | null
+          card: number
+          cash: number
+          company_id: string
+          created_at: string
+          created_by: string | null
+          discounts: number
+          dispute_reason: string | null
+          est_total: number
+          gross: number
+          id: string
+          other: number
+          paid_total: number
+          period_end: string
+          period_start: string
+          pix: number
+          prof_total: number
+          professional_id: string
+          services_count: number
+          status: string
+        }
+        Insert: {
+          adjustments_total?: number
+          advances_total?: number
+          approved_at?: string | null
+          approved_by?: string | null
+          card?: number
+          cash?: number
+          company_id: string
+          created_at?: string
+          created_by?: string | null
+          discounts?: number
+          dispute_reason?: string | null
+          est_total?: number
+          gross?: number
+          id?: string
+          other?: number
+          paid_total?: number
+          period_end: string
+          period_start: string
+          pix?: number
+          prof_total?: number
+          professional_id: string
+          services_count?: number
+          status?: string
+        }
+        Update: {
+          adjustments_total?: number
+          advances_total?: number
+          approved_at?: string | null
+          approved_by?: string | null
+          card?: number
+          cash?: number
+          company_id?: string
+          created_at?: string
+          created_by?: string | null
+          discounts?: number
+          dispute_reason?: string | null
+          est_total?: number
+          gross?: number
+          id?: string
+          other?: number
+          paid_total?: number
+          period_end?: string
+          period_start?: string
+          pix?: number
+          prof_total?: number
+          professional_id?: string
+          services_count?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "weekly_closings_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "weekly_closings_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -1476,10 +1753,25 @@ export type Database = {
         Args: { _t: string; _write_roles: string }
         Returns: undefined
       }
+      add_closing_entry: {
+        Args: {
+          _amount: number
+          _id: string
+          _key?: string
+          _kind: string
+          _method: string
+          _reason: string
+        }
+        Returns: undefined
+      }
       book_appointment: { Args: { p: Json }; Returns: string }
       close_cash_register: {
         Args: { _counted: number; _id: string; _justification: string }
         Returns: Json
+      }
+      closing_balance: {
+        Args: { c: Database["public"]["Tables"]["weekly_closings"]["Row"] }
+        Returns: number
       }
       create_company: {
         Args: { _name: string; _slug: string }
@@ -1493,6 +1785,17 @@ export type Database = {
         Returns: boolean
       }
       is_member: { Args: { _company: string }; Returns: boolean }
+      my_professional_id: { Args: { _company: string }; Returns: string }
+      open_closing: {
+        Args: {
+          _company: string
+          _end: string
+          _professional: string
+          _start: string
+        }
+        Returns: string
+      }
+      recalc_closing: { Args: { _id: string }; Returns: undefined }
       record_sale: { Args: { p: Json }; Returns: string }
       refund_sale: {
         Args: { _id: string; _reason: string }
@@ -1508,6 +1811,10 @@ export type Database = {
           _reason?: string
           _status: Database["public"]["Enums"]["appt_status"]
         }
+        Returns: undefined
+      }
+      set_closing_status: {
+        Args: { _id: string; _reason?: string; _status: string }
         Returns: undefined
       }
     }
