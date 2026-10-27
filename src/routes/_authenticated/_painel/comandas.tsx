@@ -61,7 +61,7 @@ function Tickets() {
       return { tickets: (t.data ?? []) as Ticket[], professionals: (p.data ?? []) as Professional[], services: (s.data ?? []) as Service[], methods: (m.data ?? []) as Method[] };
     },
   });
-  const people = new Map((data?.professionals ?? []).map((p) => [p.id, p.name]));
+  const people = new Map<string, string>((data?.professionals ?? []).map((p) => [p.id, p.name] as const));
   const filtered = (data?.tickets ?? []).filter((t) => {
     const q = search.toLowerCase().trim();
     return !q || [t.client_name, t.service_name, people.get(t.professional_id), t.method_name].some((x) => String(x ?? "").toLowerCase().includes(q));
