@@ -9,12 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RESOURCE_TYPES } from "@/lib/constants";
 
 export const Route = createFileRoute("/_authenticated/_painel/recursos")({
   head: () => ({ meta: [{ title: "Recursos — Navalha" }] }),
   component: Resources,
 });
-export const RESOURCE_TYPES = ["cadeira", "lavatório", "sala", "maca", "equipamento"];
+
 
 function Resources() {
   const { company } = useCompany();
