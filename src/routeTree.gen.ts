@@ -16,10 +16,14 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedPainelRouteRouteImport } from './routes/_authenticated/_painel/route'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedPainelAgendaRouteImport } from './routes/_authenticated/_painel/agenda'
+import { Route as AuthenticatedPainelCaixaRouteImport } from './routes/_authenticated/_painel/caixa'
 import { Route as AuthenticatedPainelClientesRouteImport } from './routes/_authenticated/_painel/clientes'
+import { Route as AuthenticatedPainelListaEsperaRouteImport } from './routes/_authenticated/_painel/lista-espera'
+import { Route as AuthenticatedPainelProdutosRouteImport } from './routes/_authenticated/_painel/produtos'
 import { Route as AuthenticatedPainelProfissionaisRouteImport } from './routes/_authenticated/_painel/profissionais'
 import { Route as AuthenticatedPainelRecursosRouteImport } from './routes/_authenticated/_painel/recursos'
 import { Route as AuthenticatedPainelServicosRouteImport } from './routes/_authenticated/_painel/servicos'
+import { Route as AuthenticatedPainelAtendimentoIdRouteImport } from './routes/_authenticated/_painel/atendimento.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -56,10 +60,28 @@ const AuthenticatedPainelAgendaRoute =
     path: '/agenda',
     getParentRoute: () => AuthenticatedPainelRouteRoute,
   } as any)
+const AuthenticatedPainelCaixaRoute =
+  AuthenticatedPainelCaixaRouteImport.update({
+    id: '/caixa',
+    path: '/caixa',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
 const AuthenticatedPainelClientesRoute =
   AuthenticatedPainelClientesRouteImport.update({
     id: '/clientes',
     path: '/clientes',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
+const AuthenticatedPainelListaEsperaRoute =
+  AuthenticatedPainelListaEsperaRouteImport.update({
+    id: '/lista-espera',
+    path: '/lista-espera',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
+const AuthenticatedPainelProdutosRoute =
+  AuthenticatedPainelProdutosRouteImport.update({
+    id: '/produtos',
+    path: '/produtos',
     getParentRoute: () => AuthenticatedPainelRouteRoute,
   } as any)
 const AuthenticatedPainelProfissionaisRoute =
@@ -80,6 +102,12 @@ const AuthenticatedPainelServicosRoute =
     path: '/servicos',
     getParentRoute: () => AuthenticatedPainelRouteRoute,
   } as any)
+const AuthenticatedPainelAtendimentoIdRoute =
+  AuthenticatedPainelAtendimentoIdRouteImport.update({
+    id: '/atendimento/$id',
+    path: '/atendimento/$id',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,10 +115,14 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/agenda': typeof AuthenticatedPainelAgendaRoute
+  '/caixa': typeof AuthenticatedPainelCaixaRoute
   '/clientes': typeof AuthenticatedPainelClientesRoute
+  '/lista-espera': typeof AuthenticatedPainelListaEsperaRoute
+  '/produtos': typeof AuthenticatedPainelProdutosRoute
   '/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/recursos': typeof AuthenticatedPainelRecursosRoute
   '/servicos': typeof AuthenticatedPainelServicosRoute
+  '/atendimento/$id': typeof AuthenticatedPainelAtendimentoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -98,10 +130,14 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/agenda': typeof AuthenticatedPainelAgendaRoute
+  '/caixa': typeof AuthenticatedPainelCaixaRoute
   '/clientes': typeof AuthenticatedPainelClientesRoute
+  '/lista-espera': typeof AuthenticatedPainelListaEsperaRoute
+  '/produtos': typeof AuthenticatedPainelProdutosRoute
   '/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/recursos': typeof AuthenticatedPainelRecursosRoute
   '/servicos': typeof AuthenticatedPainelServicosRoute
+  '/atendimento/$id': typeof AuthenticatedPainelAtendimentoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -112,10 +148,14 @@ export interface FileRoutesById {
   '/_authenticated/_painel': typeof AuthenticatedPainelRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/_painel/agenda': typeof AuthenticatedPainelAgendaRoute
+  '/_authenticated/_painel/caixa': typeof AuthenticatedPainelCaixaRoute
   '/_authenticated/_painel/clientes': typeof AuthenticatedPainelClientesRoute
+  '/_authenticated/_painel/lista-espera': typeof AuthenticatedPainelListaEsperaRoute
+  '/_authenticated/_painel/produtos': typeof AuthenticatedPainelProdutosRoute
   '/_authenticated/_painel/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/_authenticated/_painel/recursos': typeof AuthenticatedPainelRecursosRoute
   '/_authenticated/_painel/servicos': typeof AuthenticatedPainelServicosRoute
+  '/_authenticated/_painel/atendimento/$id': typeof AuthenticatedPainelAtendimentoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,10 +165,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/onboarding'
     | '/agenda'
+    | '/caixa'
     | '/clientes'
+    | '/lista-espera'
+    | '/produtos'
     | '/profissionais'
     | '/recursos'
     | '/servicos'
+    | '/atendimento/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -136,10 +180,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/onboarding'
     | '/agenda'
+    | '/caixa'
     | '/clientes'
+    | '/lista-espera'
+    | '/produtos'
     | '/profissionais'
     | '/recursos'
     | '/servicos'
+    | '/atendimento/$id'
   id:
     | '__root__'
     | '/'
@@ -149,10 +197,14 @@ export interface FileRouteTypes {
     | '/_authenticated/_painel'
     | '/_authenticated/onboarding'
     | '/_authenticated/_painel/agenda'
+    | '/_authenticated/_painel/caixa'
     | '/_authenticated/_painel/clientes'
+    | '/_authenticated/_painel/lista-espera'
+    | '/_authenticated/_painel/produtos'
     | '/_authenticated/_painel/profissionais'
     | '/_authenticated/_painel/recursos'
     | '/_authenticated/_painel/servicos'
+    | '/_authenticated/_painel/atendimento/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -213,11 +265,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelAgendaRouteImport
       parentRoute: typeof AuthenticatedPainelRouteRoute
     }
+    '/_authenticated/_painel/caixa': {
+      id: '/_authenticated/_painel/caixa'
+      path: '/caixa'
+      fullPath: '/caixa'
+      preLoaderRoute: typeof AuthenticatedPainelCaixaRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
     '/_authenticated/_painel/clientes': {
       id: '/_authenticated/_painel/clientes'
       path: '/clientes'
       fullPath: '/clientes'
       preLoaderRoute: typeof AuthenticatedPainelClientesRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
+    '/_authenticated/_painel/lista-espera': {
+      id: '/_authenticated/_painel/lista-espera'
+      path: '/lista-espera'
+      fullPath: '/lista-espera'
+      preLoaderRoute: typeof AuthenticatedPainelListaEsperaRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
+    '/_authenticated/_painel/produtos': {
+      id: '/_authenticated/_painel/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof AuthenticatedPainelProdutosRouteImport
       parentRoute: typeof AuthenticatedPainelRouteRoute
     }
     '/_authenticated/_painel/profissionais': {
@@ -241,25 +314,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelServicosRouteImport
       parentRoute: typeof AuthenticatedPainelRouteRoute
     }
+    '/_authenticated/_painel/atendimento/$id': {
+      id: '/_authenticated/_painel/atendimento/$id'
+      path: '/atendimento/$id'
+      fullPath: '/atendimento/$id'
+      preLoaderRoute: typeof AuthenticatedPainelAtendimentoIdRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
   }
 }
 
 interface AuthenticatedPainelRouteRouteChildren {
   AuthenticatedPainelAgendaRoute: typeof AuthenticatedPainelAgendaRoute
+  AuthenticatedPainelCaixaRoute: typeof AuthenticatedPainelCaixaRoute
   AuthenticatedPainelClientesRoute: typeof AuthenticatedPainelClientesRoute
+  AuthenticatedPainelListaEsperaRoute: typeof AuthenticatedPainelListaEsperaRoute
+  AuthenticatedPainelProdutosRoute: typeof AuthenticatedPainelProdutosRoute
   AuthenticatedPainelProfissionaisRoute: typeof AuthenticatedPainelProfissionaisRoute
   AuthenticatedPainelRecursosRoute: typeof AuthenticatedPainelRecursosRoute
   AuthenticatedPainelServicosRoute: typeof AuthenticatedPainelServicosRoute
+  AuthenticatedPainelAtendimentoIdRoute: typeof AuthenticatedPainelAtendimentoIdRoute
 }
 
 const AuthenticatedPainelRouteRouteChildren: AuthenticatedPainelRouteRouteChildren =
   {
     AuthenticatedPainelAgendaRoute: AuthenticatedPainelAgendaRoute,
+    AuthenticatedPainelCaixaRoute: AuthenticatedPainelCaixaRoute,
     AuthenticatedPainelClientesRoute: AuthenticatedPainelClientesRoute,
+    AuthenticatedPainelListaEsperaRoute: AuthenticatedPainelListaEsperaRoute,
+    AuthenticatedPainelProdutosRoute: AuthenticatedPainelProdutosRoute,
     AuthenticatedPainelProfissionaisRoute:
       AuthenticatedPainelProfissionaisRoute,
     AuthenticatedPainelRecursosRoute: AuthenticatedPainelRecursosRoute,
     AuthenticatedPainelServicosRoute: AuthenticatedPainelServicosRoute,
+    AuthenticatedPainelAtendimentoIdRoute:
+      AuthenticatedPainelAtendimentoIdRoute,
   }
 
 const AuthenticatedPainelRouteRouteWithChildren =
