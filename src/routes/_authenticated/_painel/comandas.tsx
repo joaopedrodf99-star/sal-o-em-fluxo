@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Plus, Search, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import { useCompany } from "@/lib/company";
@@ -62,10 +62,10 @@ function Tickets() {
     },
   });
   const people = new Map((data?.professionals ?? []).map((p) => [p.id, p.name]));
-  const filtered = useMemo(() => (data?.tickets ?? []).filter((t) => {
+  const filtered = (data?.tickets ?? []).filter((t) => {
     const q = search.toLowerCase().trim();
     return !q || [t.client_name, t.service_name, people.get(t.professional_id), t.method_name].some((x) => String(x ?? "").toLowerCase().includes(q));
-  }), [data?.tickets, search]);
+  });
   const active = filtered.filter((t) => t.status === "active");
   const gross = active.reduce((a, t) => a + money(t.amount), 0);
   const net = active.reduce((a, t) => a + money(t.amount) - money(t.discount), 0);
