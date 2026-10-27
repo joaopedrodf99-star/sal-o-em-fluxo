@@ -16,7 +16,7 @@ export function calcPayment(amount: number, m: PaymentMethodDef, installments = 
   const extra = installments > 1 ? Number(m.installment_fee_pct) * (installments - 1) : 0;
   const pct = Number(m.fee_pct) + extra + (anticipate ? Number(m.anticipation_pct) : 0);
   const fee = amount > 0 ? round2((amount * pct) / 100 + Number(m.fee_fixed)) : 0;
-  const receiveDays = anticipate ? 1 : Number(m.receive_days) * (m.kind === "credit" && !anticipate ? 1 : 1);
+  const receiveDays = anticipate ? 1 : Number(m.receive_days);
   return { gross: round2(amount), fee, net: round2(amount - fee), receiveDays };
 }
 
