@@ -11,9 +11,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Entrar — Navalha" },
+      { title: "Entrar — Office Cabelos App" },
       { name: "description", content: "Acesse o painel de gestão do seu salão ou barbearia." },
-      { property: "og:title", content: "Entrar — Navalha" },
+      { property: "og:title", content: "Entrar — Office Cabelos App" },
       { property: "og:description", content: "Acesse o painel de gestão do seu salão ou barbearia." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -63,7 +63,7 @@ function AuthPage() {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="hidden flex-col justify-between bg-sidebar p-12 text-sidebar-foreground lg:flex">
         <div className="flex items-center gap-2 text-sidebar-accent-foreground">
-          <span className="h-3 w-3 rounded-full brand-dot" /> Navalha
+          <span className="h-3 w-3 rounded-full brand-dot" /> Office Cabelos App
         </div>
         <div>
           <h1 className="text-6xl leading-tight text-sidebar-accent-foreground">
