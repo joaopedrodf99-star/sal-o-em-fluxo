@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedPainelRouteRouteImport } from './routes/_authenticated/_painel/route'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedPainelAgendaRouteImport } from './routes/_authenticated/_painel/agenda'
 import { Route as AuthenticatedPainelClientesRouteImport } from './routes/_authenticated/_painel/clientes'
 import { Route as AuthenticatedPainelProfissionaisRouteImport } from './routes/_authenticated/_painel/profissionais'
 import { Route as AuthenticatedPainelRecursosRouteImport } from './routes/_authenticated/_painel/recursos'
@@ -49,6 +50,12 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPainelAgendaRoute =
+  AuthenticatedPainelAgendaRouteImport.update({
+    id: '/agenda',
+    path: '/agenda',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
 const AuthenticatedPainelClientesRoute =
   AuthenticatedPainelClientesRouteImport.update({
     id: '/clientes',
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/agenda': typeof AuthenticatedPainelAgendaRoute
   '/clientes': typeof AuthenticatedPainelClientesRoute
   '/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/recursos': typeof AuthenticatedPainelRecursosRoute
@@ -89,6 +97,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/agenda': typeof AuthenticatedPainelAgendaRoute
   '/clientes': typeof AuthenticatedPainelClientesRoute
   '/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/recursos': typeof AuthenticatedPainelRecursosRoute
@@ -102,6 +111,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/_painel': typeof AuthenticatedPainelRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/_painel/agenda': typeof AuthenticatedPainelAgendaRoute
   '/_authenticated/_painel/clientes': typeof AuthenticatedPainelClientesRoute
   '/_authenticated/_painel/profissionais': typeof AuthenticatedPainelProfissionaisRoute
   '/_authenticated/_painel/recursos': typeof AuthenticatedPainelRecursosRoute
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/onboarding'
+    | '/agenda'
     | '/clientes'
     | '/profissionais'
     | '/recursos'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/onboarding'
+    | '/agenda'
     | '/clientes'
     | '/profissionais'
     | '/recursos'
@@ -136,6 +148,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/_painel'
     | '/_authenticated/onboarding'
+    | '/_authenticated/_painel/agenda'
     | '/_authenticated/_painel/clientes'
     | '/_authenticated/_painel/profissionais'
     | '/_authenticated/_painel/recursos'
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/_painel/agenda': {
+      id: '/_authenticated/_painel/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AuthenticatedPainelAgendaRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
     '/_authenticated/_painel/clientes': {
       id: '/_authenticated/_painel/clientes'
       path: '/clientes'
@@ -225,6 +245,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedPainelRouteRouteChildren {
+  AuthenticatedPainelAgendaRoute: typeof AuthenticatedPainelAgendaRoute
   AuthenticatedPainelClientesRoute: typeof AuthenticatedPainelClientesRoute
   AuthenticatedPainelProfissionaisRoute: typeof AuthenticatedPainelProfissionaisRoute
   AuthenticatedPainelRecursosRoute: typeof AuthenticatedPainelRecursosRoute
@@ -233,6 +254,7 @@ interface AuthenticatedPainelRouteRouteChildren {
 
 const AuthenticatedPainelRouteRouteChildren: AuthenticatedPainelRouteRouteChildren =
   {
+    AuthenticatedPainelAgendaRoute: AuthenticatedPainelAgendaRoute,
     AuthenticatedPainelClientesRoute: AuthenticatedPainelClientesRoute,
     AuthenticatedPainelProfissionaisRoute:
       AuthenticatedPainelProfissionaisRoute,
