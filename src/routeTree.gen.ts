@@ -16,6 +16,8 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedPainelRouteRouteImport } from './routes/_authenticated/_painel/route'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedPainelAgendaRouteImport } from './routes/_authenticated/_painel/agenda'
+import { Route as AuthenticatedPainelComandasRouteImport } from './routes/_authenticated/_painel/comandas'
+import { Route as AuthenticatedPainelFechamentosRouteImport } from './routes/_authenticated/_painel/fechamentos'
 import { Route as AuthenticatedPainelCaixaRouteImport } from './routes/_authenticated/_painel/caixa'
 import { Route as AuthenticatedPainelClientesRouteImport } from './routes/_authenticated/_painel/clientes'
 import { Route as AuthenticatedPainelListaEsperaRouteImport } from './routes/_authenticated/_painel/lista-espera'
@@ -58,6 +60,18 @@ const AuthenticatedPainelAgendaRoute =
   AuthenticatedPainelAgendaRouteImport.update({
     id: '/agenda',
     path: '/agenda',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
+const AuthenticatedPainelComandasRoute =
+  AuthenticatedPainelComandasRouteImport.update({
+    id: '/comandas',
+    path: '/comandas',
+    getParentRoute: () => AuthenticatedPainelRouteRoute,
+  } as any)
+const AuthenticatedPainelFechamentosRoute =
+  AuthenticatedPainelFechamentosRouteImport.update({
+    id: '/fechamentos',
+    path: '/fechamentos',
     getParentRoute: () => AuthenticatedPainelRouteRoute,
   } as any)
 const AuthenticatedPainelCaixaRoute =
@@ -265,6 +279,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelAgendaRouteImport
       parentRoute: typeof AuthenticatedPainelRouteRoute
     }
+    '/_authenticated/_painel/comandas': {
+      id: '/_authenticated/_painel/comandas'
+      path: '/comandas'
+      fullPath: '/comandas'
+      preLoaderRoute: typeof AuthenticatedPainelComandasRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
+    '/_authenticated/_painel/fechamentos': {
+      id: '/_authenticated/_painel/fechamentos'
+      path: '/fechamentos'
+      fullPath: '/fechamentos'
+      preLoaderRoute: typeof AuthenticatedPainelFechamentosRouteImport
+      parentRoute: typeof AuthenticatedPainelRouteRoute
+    }
     '/_authenticated/_painel/caixa': {
       id: '/_authenticated/_painel/caixa'
       path: '/caixa'
@@ -326,6 +354,8 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedPainelRouteRouteChildren {
   AuthenticatedPainelAgendaRoute: typeof AuthenticatedPainelAgendaRoute
+  AuthenticatedPainelComandasRoute: typeof AuthenticatedPainelComandasRoute
+  AuthenticatedPainelFechamentosRoute: typeof AuthenticatedPainelFechamentosRoute
   AuthenticatedPainelCaixaRoute: typeof AuthenticatedPainelCaixaRoute
   AuthenticatedPainelClientesRoute: typeof AuthenticatedPainelClientesRoute
   AuthenticatedPainelListaEsperaRoute: typeof AuthenticatedPainelListaEsperaRoute
@@ -339,6 +369,8 @@ interface AuthenticatedPainelRouteRouteChildren {
 const AuthenticatedPainelRouteRouteChildren: AuthenticatedPainelRouteRouteChildren =
   {
     AuthenticatedPainelAgendaRoute: AuthenticatedPainelAgendaRoute,
+    AuthenticatedPainelComandasRoute: AuthenticatedPainelComandasRoute,
+    AuthenticatedPainelFechamentosRoute: AuthenticatedPainelFechamentosRoute,
     AuthenticatedPainelCaixaRoute: AuthenticatedPainelCaixaRoute,
     AuthenticatedPainelClientesRoute: AuthenticatedPainelClientesRoute,
     AuthenticatedPainelListaEsperaRoute: AuthenticatedPainelListaEsperaRoute,
